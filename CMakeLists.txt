@@ -35,8 +35,8 @@ execute_process(COMMAND uname -m COMMAND tr -d '\n' OUTPUT_VARIABLE ARCHITECTURE
 if(${ARCHITECTURE} STREQUAL "x86_64")
     add_library("${SNAPCRAFT_PRELOAD}32" SHARED preload.cpp)
     set_target_properties("${SNAPCRAFT_PRELOAD}32" PROPERTIES
-                          COMPILE_FLAGS "-DSNAPCRAFT_LIBNAME_DEF=\\\"${LIBNAME}32.so\\\" -m32")
-    target_link_libraries("${SNAPCRAFT_PRELOAD}32" -ldl -m32)
+                          COMPILE_FLAGS "-DSNAPCRAFT_LIBNAME_DEF=\\\"${LIBNAME}32.so\\\"")
+    target_link_libraries("${SNAPCRAFT_PRELOAD}32" -ldl)
 endif()
 
 configure_file(snapcraft-preload.in snapcraft-preload @ONLY)
